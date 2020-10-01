@@ -1,12 +1,16 @@
 function checkForSpam(str) {
-  const smallString = str.toLowerCase();
-  console.log(smallString);
+  str = str.toLowerCase();
+  console.log(str);
+  const spamWords = ["sale", "spam"];
 
-  return smallString.includes("sale") || smallString.includes("spam")
-    ? true
-    : false;
-
-  // word HOW TO CREATE A LIST OF restricted words
+  for (const spamWord of spamWords) {
+    if (str.toLowerCase().includes(spamWord)) {
+      return true;
+    } else {
+      continue;
+    }
+  }
+  return false;
 }
 
 console.log(checkForSpam("Latest technology news")); // false
