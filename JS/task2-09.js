@@ -12,14 +12,11 @@ function addLogin(logins, login) {
   const ERROR = "Ошибка! Логин должен быть размером от 4 до 16 символов";
   let message;
 
-  if (isLoginValid(login) === false) {
+  if (!isLoginValid(login)) {
     message = ERROR;
-  } else if (isLoginUnique(logins, login) === false) {
+  } else if (!isLoginUnique(logins, login)) {
     message = REFUSAL;
-  } else if (
-    isLoginValid(login) === true &&
-    isLoginUnique(logins, login) === true
-  ) {
+  } else if (isLoginValid(login) && isLoginUnique(logins, login)) {
     message = SUCCESS;
     logins.push(login);
   }
@@ -38,9 +35,6 @@ console.log(addLogin(logins, "Zod"));
 ("Ошибка! Логин должен быть от 4 до 16 символов");
 
 console.log(addLogin(logins, "jqueryisextremelyfast"));
-("Ошибка! Логин должен быть от 4 до 16 символов");
-
-console.log(addLogin(logins, "jqueryisextrem"));
 ("Ошибка! Логин должен быть от 4 до 16 символов");
 
 console.log(logins);
