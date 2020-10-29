@@ -654,10 +654,35 @@
 // 'login : Poly, email: poly@mail.com'
 
 
+// TASK 1
 
+// const Account = function(login, email) {
+//   this.login = login
+//   this.email = email
+  
+//     Account.prototype.getInfo = function (){
+//         return `login:${this.login},email:${this.email}`
+//         return `login : ${this.login}, email: ${this.email}`;
+//     }
+       
+   
+//         }
+        
+
+// console.log(typeof Account.prototype.getInfo);
+// // 'function'
+
+// const mango = new Account('Mangozedog', 'mango@dog.woof');
+// console.dir(mango)
+// console.dir(mango.getInfo()); 
+// // 'login : Mangozedog, email: mango@dog.woof'
+
+// const poly = new Account( 'Poly', 'poly@mail.com');
+// console.log(poly.getInfo());
+// // 'login : Poly, email: poly@mail.com'
 
 // TASK 2 
- // Write code under this line
+//  Write code under this line
 // class User {
 //     constructor (name, age, followers) {
 //         this.name = name;
@@ -665,7 +690,6 @@
 //         this.followers = followers;
 //     }
 //     getInfo(){
-//         console.log(`User ${this.name} is ${this.age} years old and has ${this.followers} followers`) 
 //         return `User ${this.name} is ${this.age} years old and has ${this.followers} followers`
 //     }
    
@@ -675,8 +699,8 @@
 // console.log(typeof User);
 // // 'function'
 
-// // const mango = new User('Mango', 2, 20);
-// // console.log(mango.getFullInfo()); 
+// const mango = new User('Mango', 2, 20);
+// console.log(mango.getInfo()); 
 // // // 'User Mango is 2 years old and has 20 followers'
 
 // // console.log(typeof mango.getInfo); 
@@ -684,7 +708,7 @@
 
 // const poly = new User( 'Poly', 3, 17);
 // console.log(poly.getInfo());
-// // 'User Poly is 3 years old and has 17 followers'
+// 'User Poly is 3 years old and has 17 followers'
 
 
 // TASK 3
@@ -798,17 +822,37 @@
 
 // class Car {
   
-//     constructor({ maxSpeed, price }) {
+//     constructor(car) {
 //         this.speed = 10;
-//         this._price = price;
-//         this.maxSpeed = maxSpeed;
+//         this._price = car.price;
+//         this.maxSpeed = car.maxSpeed;
 //         this.isOn = false;
 //         this.distance = 0;
 //     }
     
+// // static getSpecs(car) {
+// //     let keys = Object.keys(car);
+// //     console.log(keys);
+// //     let specs = "";
+ 
+// //     for (const key of keys) {
+// //         specs += `${key}: ${car[key]}, `;
+       
+// //     }
+    
+// //     return specs
+      
+// //       .split("")
+// //       .filter((el) => el !== "_")
+// //       .join("");
+    
+// //   }
+
 //     static getSpecs(car) {
 //       return `maxSpeed: ${car.maxSpeed}, speed: ${car.speed}, isOn: ${car.isOn}, distance: ${car.distance}, price: ${car._price}`
-//   }
+//     }
+    
+
 //     get price() {
 //       return this._price
 //   }
@@ -831,8 +875,8 @@
       
 //   }
 //     drive(hours) {
-      
-//       console.log(this.distance += this.speed * hours);
+ 
+// this.distance += this.speed * hours;
       
 //   }
 // }
@@ -845,11 +889,12 @@
 // console.dir(Car.getSpecs(mustang));
 // console.dir(mustang);
 // console.log(mustang.accelerate(50));
-// // 'maxSpeed: 200, speed: 50, isOn: true, distance: 100, price: 2000'
+// 'maxSpeed: 200, speed: 50, isOn: true, distance: 100, price: 2000'
 
 // mustang.decelerate(250);
 // mustang.drive(1);
 // mustang.turnOff();
+
 
 
 // console.log(Car.getSpecs(mustang));
@@ -859,5 +904,518 @@
 // mustang.price = 4000;
 // console.log(mustang.price); // 4000
 
+// !!!!!!!!!!ЗАМЫКАНИЕ - CLOSURE!!!!!!!!!!!!!!!!!!
+/*
+  Global env - создается при исполнении файла скрипта
+    Record: {}
+    Parent: null
+*/
 
 
+/*
+  Для функции в ее [[Environment]] записывается ссылка 
+  на глобальный environment .
+  Записывается в момент объявления функции
+  [[Environment]] = Global env
+*/
+// const makeShef = function (name) {
+//      const x = 123;
+//     /*
+//   makeShef env - создается при исполнении файла скрипта
+//     Record: {name: Mango, x = 123}
+//     Parent: Global env
+// */
+ 
+//     // [[Environment]] = makeShef env
+//     return function makeDish(dish) {
+       
+//       /*
+//   makeDish env - создается при исполнении файла скрипта
+//     Record: { dish: 'apple pie'}
+//     Parent: makeShef env
+// */
+//     console.log(`${name} is cooking ${x} ${dish}`);
+//   };
+// };
+
+// /*
+//   Global env - создается при исполнении файла скрипта
+//     Record: {makeShef: f}
+//     Parent: null
+// */
+
+// const mango = makeShef('Mango');
+
+// /*
+//   Global env - создается при исполнении файла скрипта
+//     Record: {makeShef: f, mango: f}
+//     Parent: null
+// */
+
+
+
+// mango('apple pie'); // Mango is cooking apple pie
+// mango('beef stew'); // Mango is cooking beef stew
+// console.dir(mango)
+
+// const poly = makeShef('Poly');
+// poly('pancakes'); // Poly is cooking pancakes
+// poly('eggs and bacon'); // Poly is cooking eggs and bacon
+
+/*
+  Global env - создается при исполнении файла скрипта
+    Record: {}
+    Parent: null
+*/
+
+// [[Environment]] = fnA env
+
+// const fnA = function (a) {
+//     // fnA env 
+// //     Record: {a}
+// //     Parent: Global env
+
+//     // [[Environment]] = fnB env
+//     return function fnB(b) {
+
+//         // fnB env 
+// //     Record: {b}
+// //     Parent: fnA env 
+
+//         // [[Environment]] = fnC env
+//         return function fnC(c) {
+//                  // fnC env 
+// //     Record: {c}
+// //     Parent: fnB env 
+//             console.log(a+b+c); 
+//          }
+//     }     
+    
+// }
+
+// /*
+//   Global env - создается при исполнении файла скрипта
+//     Record: {fnA: f}
+//     Parent: null
+// */
+
+
+// const sum = fnA(4)(5);
+// sum(6)
+// console.dir(sum);
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+// // == task-1 == //
+// Створити простенький калькулятор за допомогою класу.
+// Цей клас буде мати такі методи:
+// 1. Метод що запитує в користувача 2 числа
+// 2. Метод що додає ці числа
+// 3. Метод що віднімає ці числа
+// 4. Метод що перемножує ці числа
+// 5. Метод що ділить ці числа
+// 6. Метод що виводить результат арефметичної операції на екран в форматі `Результат операції ${value}`
+// цей метод запускаєтьсяв кінці кожного з методів 2-5
+// 7. Метод що додає в калькулятор новий функціонал (Приймає аргументом колбек в якому описаний новий метод)
+// 8. Передати в метод №7 колбек ф-ю що підносить числа в степінь
+// 9. Написати всі методи і перевірити чи вони працюють
+
+// class Calculator {
+
+//     constructor(a, b) {
+//         this.a = a
+//         this.b = b
+// }  
+
+//     addFigures() {
+//          const value = this.a + this.b
+//         return function result(){
+//             console.log(`Результат операції ${value}`)
+//         }
+//     }
+    
+//     deductFigures() {
+//         const value = this.a - this.b
+//         return function result(){
+//             console.log(`Результат операції ${value}`)
+//         }
+//     }
+//     multFigures() {
+//         const value = this.a * this.b
+//         return function result(){
+//             console.log(`Результат операції ${value}`)
+//         }
+        
+//      }
+//     divideFigures() {
+//         const value = this.a / this.b
+//         return function result(){
+//             console.log(`Результат операції ${value}`)
+//         }
+//     }
+
+//     elevateFigures() {
+//         const value = calculator.a ** calculator.b
+//         return value
+//     }
+
+//    data(cb) {
+//        let result = cb()
+//        console.log(result)
+
+// };
+
+// }
+
+// const calculator = new Calculator(6, 2)
+
+// const sum = calculator.addFigures()
+// const deduction = calculator.deductFigures()
+// const multiply = calculator.multFigures()
+// const divide = calculator.divideFigures()
+// const callback = calculator.elevateFigures
+// const elevate = calculator.data(callback);
+
+
+
+
+// sum()
+// deduction()
+// multiply()
+// divide ()
+
+
+// // == task-2 == //
+// Створити класи Library та Book
+
+// 1. Клас Library буде описувати нашу бібліотеку книжок. Всі книжки будуть зберігатися в масиві.
+// Також цей клас буде мати такі методи:
+
+// - Метод buy - це метод що приймає аргументом обєкт книги і додає її в бібліотеку якщо її там ще немає. Якщо книга вже є показує повідомлення що книга вже куплена
+// - Метод sell - це метод що приймає аргументом назву книги і видаляє її з бібліотеки
+// - Метод addToFavourite - це метод що приймає аргументом назву книги і додає обєкт книги в список улюблених
+// - Метод removeFromFavourite - це метод що приймає назву книги і видаляє її з списку улюблених
+// - Гетер сountFavouriteBooks - це гетер що показує кількість книжок що додані в улюблені
+// - Гетер finishedBook - це гетер що містить колекцію всіх прочитаних книжок
+// - Метод totalCost - це метод що рахує вартість всіх книжок в бібліотеці
+
+// 2. Клас Book буде описувати окрему книгу. Кожна книга це буде обєкт з такими ключами
+// - author
+// - title
+// - price
+// - totalPages
+// - currentPage
+
+// Також цей клас буде мати такі методи:
+
+// - Метод read - це метод що приймає кількість сторінок що було прочитано і міняє значення currentPage
+// - Гетер bookProgres - гетер що переводить кількість прочитаних сторінок в відсотки
+// - Сетер bookProgres - сетер що переводить відсоток прочитаних сторінок в кількість
+// Клас Book приймає один аргумент - обєкт з парметрами книги. В середині класу використовувати деструктуризацію обєкта
+
+
+// class Book {
+//     constructor(book) {
+//         this.author = book.author;
+//         this.title = book.title;
+//         this.price = book.price;
+//         this.totalPages = book.totalPages;
+//         this._currentPage = book.currentPage;
+// }
+    
+//     redBook(amount) {
+//         return this._currentPage = amount
+//     }
+    
+//      get bookProgres() {
+//     return this._currentPage * 100/ this.totalPages
+//   }
+
+//   set bookProgres(value) {
+//     this._currentPage = this.totalPages * value / 100;
+//   }
+
+// }
+
+
+// const book = { author: "Repeta", title: "JS", price: 2000, totalPages: 234, currentPage: 123 };
+// const bookItem = new Book(book)
+
+
+
+// console.dir(bookItem.redBook(250))
+// console.log(bookItem)
+// bookItem.bookProgres = 50
+// console.log(bookItem.bookProgres)
+// console.log(bookItem)
+
+// const tweets = [
+//   { id: '000', likes: 5, tags: ['js', 'nodejs'] },
+//   { id: '001', likes: 2, tags: ['html', 'css'] },
+//   { id: '002', likes: 17, tags: ['html', 'js', 'nodejs'] },
+//   { id: '003', likes: 8, tags: ['css', 'react'] },
+//   { id: '004', likes: 0, tags: ['js', 'nodejs', 'react'] },
+// ];
+
+// const getTags = tweets =>
+//   tweets.reduce((allTags, tweet) => {
+//     allTags.push(...tweet.tags);
+
+//     return allTags;
+//   }, []);
+
+// const tags = getTags(tweets);
+
+// // Вынесем callback-функцию отдельно, а в reducе передадим ссылку на нее.
+// // Это стандартная практика если callback-функция довольно большая.
+
+// // Если в объекте-аккумуляторе acc нету своего свойства с ключем tag,
+// // то создаем его и записывает ему значение 0.
+// // В противном случае увеличиваем значение на 1.
+// const getTagStats = (acc, tag) => {
+//   if (!acc.hasOwnProperty(tag)) {
+//     acc[tag] = 0;
+//   }
+
+//   acc[tag] += 1;
+
+//   return acc;
+// };
+
+// // Начальное значение аккумулятора это пустой объект {}
+// const countTags = tags => tags.reduce(getTagStats, {});
+
+// const tagCount = countTags(tags);
+// console.log(tagCount);
+
+// Д-З 6-1
+
+// Write code under this line
+// const getUserNames = users => users
+
+// const users = [
+//     "Moore Hensley",
+//     "Sharlene Bush",
+//     "Ross Vazquez",
+//     "Elma Head",
+//     "Carey Barr",
+//     "Blackburn Dotson",
+//     "Sheree Anthony",
+// ]
+
+// const getUserNames = array => array.map(({name}) => name) ;
+// console.log(getUserNames(users));
+
+// Д-З 6-2
+
+// const users = [
+//   {
+//     id: "701b29c3-b35d-4cf1-a5f6-8b12b29a5081",
+//     name: "Moore Hensley",
+//     email: "moorehensley@indexia.com",
+//     eyeColor: "blue",
+//     friends: ["Sharron Pace"],
+//     isActive: false,
+//     balance: 2811,
+//     skills: ["ipsum", "lorem"],
+//     gender: "male",
+//     age: 37,
+//   },
+//   {
+//     id: "7a3cbd18-57a1-4534-8e12-1caad921bda1",
+//     name: "Sharlene Bush",
+//     email: "sharlenebush@tubesys.com",
+//     eyeColor: "blue",
+//     friends: ["Briana Decker", "Sharron Pace"],
+//     isActive: true,
+//     balance: 3821,
+//     skills: ["tempor", "mollit", "commodo", "veniam", "laborum"],
+//     gender: "female",
+//     age: 34,
+//   },
+//   {
+//     id: "334f8cb3-eb04-45e6-abf4-4935dd439b70",
+//     name: "Carey Barr",
+//     email: "careybarr@nurali.com",
+//     eyeColor: "blue",
+//     friends: ["Jordan Sampson", "Eddie Strong"],
+//     isActive: true,
+//     balance: 3951,
+//     skills: ["ex", "culpa", "nostrud"],
+//     gender: "male",
+//     age: 27,
+//   }
+// ] 
+// // const getUsersWithEyeColor = (array, color) => array.filter(({eyeColor}) => eyeColor === color)
+
+// // console.log(getUsersWithEyeColor(users, 'blue'));
+
+// const getUsersWithEyeColor = function (array, color, sex) {
+//     return array.filter(function ({ eyeColor, gender }) { return eyeColor === color && gender === sex} )
+// } 
+// console.log(getUsersWithEyeColor(users, 'blue', "male"));
+// console.log(getUsersWithEyeColor)
+
+// Д-З 6-3
+
+// // Write code under this line
+// const users = [
+//     {
+//         name: "Moore Hensley", gender: 'male'
+//     } ,
+    
+//     {
+//         name: "Ross Vazquez", gender: 'female'
+//     },  
+    
+//     {
+//         name: "Carey Barr", gender: 'male'
+//     } ,  
+      
+//   {
+//         name: "Blackburn Dotson", gender: 'female'
+//     } 
+// ] 
+// const getUsersWithGender = (array, gender) =>
+//    array.filter((sex) => sex.gender === gender)  
+//     .map(({name}) => name)   
+    
+// console.log(getUsersWithGender(users, 'female'));
+
+
+// Д-З 6-4
+
+// const users = [
+//   {
+//     id: '701b29c3-b35d-4cf1-a5f6-8b12b29a5081',
+//     name: 'Moore Hensley',
+//     email: 'moorehensley@indexia.com',
+//     eyeColor: 'blue',
+//     friends: ['Sharron Pace'],
+//     isActive: false,
+//     balance: 2811,
+//     skills: ['ipsum', 'lorem'],
+//     gender: 'male',
+//     age: 37,
+//   },
+//   {
+//     id: '88beb2f3-e4c2-49f3-a0a0-ecf957a95af3',
+//     name: 'Ross Vazquez',
+//     email: 'rossvazquez@xinware.com',
+//     eyeColor: 'green',
+//     friends: ['Marilyn Mcintosh', 'Padilla Garrison', 'Naomi Buckner'],
+//     isActive: false,
+//     balance: 3793,
+//     skills: ['nulla', 'anim', 'proident', 'ipsum', 'elit'],
+//     gender: 'male',
+//     age: 24,
+//   },
+//   {
+//     id: '150b00fb-dd82-427d-9faf-2879ea87c695',
+//     name: 'Blackburn Dotson',
+//     email: 'blackburndotson@furnigeer.com',
+//     eyeColor: 'brown',
+//     friends: ['Jacklyn Lucas', 'Linda Chapman'],
+//     isActive: true,
+//     balance: 1498,
+//     skills: ['non', 'amet', 'ipsum'],
+//     gender: 'male',
+//     age: 38,
+//   }     
+// ]; 
+// const getInactiveUsers = function (array) {
+//     return array.filter(({ isActive }) => !isActive)
+// }
+
+// console.log(getInactiveUsers(users));
+
+// Д-З 6-5
+
+// const users = [{
+//     id: '88beb2f3-e4c2-49f3-a0a0-ecf957a95af3',
+//     name: 'Ross Vazquez',
+//     email: 'rossvazquez@xinware.com',
+//     eyeColor: 'green',
+//     friends: ['Marilyn Mcintosh', 'Padilla Garrison', 'Naomi Buckner'],
+//     isActive: false,
+//     balance: 3793,
+//     skills: ['nulla', 'anim', 'proident', 'ipsum', 'elit'],
+//     gender: 'male',
+//     age: 24,
+// },
+// {
+//     id: '150b00fb-dd82-427d-9faf-2879ea87c695',
+//     name: 'Blackburn Dotson',
+//     email: 'blackburndotson@furnigeer.com',
+//     eyeColor: 'brown',
+//     friends: ['Jacklyn Lucas', 'Linda Chapman'],
+//     isActive: false,
+//     balance: 1498,
+//     skills: ['non', 'amet', 'ipsum'],
+//     gender: 'male',
+//     age: 38,
+// }];
+
+
+
+// const getUserWithEmail = (array, mail) => array.find(({email}) => email === mail);
+
+// console.log(getUserWithEmail(users, 'blackburndotson@furnigeer.com'));
+
+// console.log(getUserWithEmail(users, 'rossvazquez@xinware.com'));
+
+// Д-З 6-6
+
+// const users =  [
+//     { name: 'Ross Vazquez', email: 'rossvazquez@xinware.com', age: 15},
+//     { name: 'Elma Head', email: 'elmahead@omatom.com', age: 25 },
+//     { name: 'Carey Barr', email: 'careybarr@nurali.com', age: 23 }
+// ] 
+
+
+// const getUsersWithAge = (array, min, max) => array
+//  .filter(({age}) => age > min && age < max)   
+//     .map(({ name, email }) => ({ name, email }));  
+
+//  console.log(getUsersWithAge(users, 20, 30));
+
+// // console.log(getUsersWithAge(users, 30, 40));
+// /* [
+//     { name: 'Moore Hensley', email: 'moorehensley@indexia.com' },
+//     { name: 'Sharlene Bush', email: 'sharlenebush@tubesys.com' },
+//     { name: 'Blackburn Dotson', email: 'blackburndotson@furnigeer.com' },
+//     { name: 'Sheree Anthony', email: 'shereeanthony@kog.com' }
+// ] */
+
+// // Д-З 6-7
+
+//  const calculateTotalBalance = array => array.reduce((total, {balance}) => total + balance, 0);
+
+// // console.log(calculateTotalBalance(users)); 
+// // 20916
+
+// // Д-З 6-8
+
+// const users = [{ name: 'Sharlene Bush', friends: 'Briana Decker' }, { name: 'Sheree Anthony', friends: 'Briana Decker'}]
+
+// const getUsersWithFriend = (array, friendName) => array.filter(({friends}) => friends.includes(friendName))
+//     .map(({name}) => name)
+
+// console.log(getUsersWithFriend(users, 'Briana Decker'));
+// // [ 'Sharlene Bush', 'Sheree Anthony' ]
+
+// // console.log(getUsersWithFriend(users, 'Goldie Gentry'));
+// // [ 'Elma Head', 'Sheree Anthony' ]
+
+// // Д-З 6-9
+
+
+// const getNamesSortedByFriendsCount = (array) => 
+//     [...array].sort((a, b) => a.friends.length - b.friends.length)
+//         .map(({name}) => name);
+
+
+// console.log(getNamesSortedByFriendsCount(users));
+
+// // Д-З 6-10
