@@ -849,7 +849,7 @@
 //         this._currentPage = book.currentPage;
 // }
     
-//     redBook(amount) {
+//     readBook(amount) {
 //         return this._currentPage = amount
 //     }
     
@@ -915,3 +915,206 @@
 // console.log(tagCount);
 
 
+// !!!!!!!!!!!! https://www.codewars.com/kata/572059afc2f4612825000d8a/train/javascript
+
+// function howManydays(month){
+   
+//   switch (month){
+//       case 2: return 28       
+//       case 4 :       
+//       case 6 :        
+//       case 9 :     
+//       case 11 : return 30  
+ 
+//   }
+//   return 31;
+// }
+
+// console.log(howManydays(12));
+
+// !!!!!!!! https://www.codewars.com/kata/56f935002e6c0d55fa000d92/train/javascript
+
+// class Animal {
+//   constructor(name, age, legs, species, status) {
+//     this.name = name;
+//     this.age = age;
+//     this.legs = legs;
+//     this.species = species;
+//     this.status = status;
+//   }
+//   introduce() {
+//     return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
+//   }
+// }
+
+// class Shark extends Animal {
+//   constructor(name, age, status) {
+//       super(name, age);
+//       this.legs = 0;
+//       this.species = "shark";
+        
+//   }
+// }
+
+// class Cat extends Animal {
+//     constructor(name, age, status) {
+//         super(name, age);
+//         this.legs = 4;
+//         this.species = "cat";
+//         this.status = status
+//     }
+//       myuCat(){
+//           console.log("Meow meow!")
+//       }
+//       introduceCat(){
+//           super.introduce()
+//           this.myuCat
+//       }
+//   }
+
+
+
+// class Dog extends Animal {
+//     constructor(name, age, status, master = '') {
+//         super(name, age, status);
+//         this.legs = 4;
+//         this.species = "dog";
+//         this.master = master
+//     }
+//       greetMaster(){
+//           return `Hello ${this.master}`
+//       }
+    
+// }
+
+// !!!!!!!!!!!!!!  
+// Калькулятор
+// const btnPlus = document.getElementById('plus')
+// const btnMinus = document.getElementById('minus')
+// const btnMult = document.getElementById('mult')
+// const btnShare = document.getElementById('share')
+// const first = document.getElementById('firstNum')
+// const second = document.getElementById('secondNum')
+// const result = document.getElementById('result')
+
+// class Calc {
+//     constructor(id) {
+//         this.id = id;
+//     }
+//     toGetNumbers(tag1,tag2) {
+//         this.firstValue = +prompt('Введите первое число')
+//         this.secondValue = +prompt('Введите второе число')
+//         tag1.textContent = this.firstValue 
+//         tag2.textContent =  this.secondValue
+
+// }
+//     toSum(place,tag1,tag2) {
+//         this.toGetNumbers(tag1,tag2)
+//         return this.firstValue + this.secondValue
+//         this.toShowResult(place,total)
+//     }
+//     toSub(place,tag1,tag2) {
+//         this.toGetNumbers(tag1,tag2)
+//         return this.firstValue - this.secondValue
+//         this.toShowResult(place,total)
+//     }
+    
+//     toMult(place,tag1,tag2) {
+//         this.toGetNumbers(tag1,tag2)
+//         return this.firstValue * this.secondValue
+//         this.toShowResult(place,total)
+//     }
+//     toShare(place,tag1,tag2) {
+//         this.toGetNumbers(tag1,tag2)
+//         let total = this.firstValue / this.secondValue
+//         this.toShowResult(place,total)
+//     }
+    
+//     toShowResult(place,value) {
+//         // alert(`Результат операции: ${value}`)
+//         place.textContent = value;
+//     }
+    
+// }
+
+// const myCalc = new Calc(1);
+// console.log(myCalc)
+
+// btnPlus.addEventListener('click', () => myСalc.toSum(resul, first, second))
+// btnMinus.addEventListener('click', () => myСalc.toSub(resul, first, second))
+// btnMult.addEventListener('click', () => myСalc.toMult(resul, first, second))
+// btnShare.addEventListener('click', ()=> myСalc.toShare(resul, first, second))
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// Створити класи Library 
+
+// 1. Клас Library буде описувати нашу бібліотеку книжок. Всі книжки будуть зберігатися в масиві.
+// Також цей клас буде мати такі методи:
+
+// - Метод buy - це метод що приймає аргументом обєкт книги і додає її в бібліотеку якщо її там ще немає. Якщо книга вже є показує повідомлення що книга вже куплена
+// - Метод sell - це метод що приймає аргументом назву книги і видаляє її з бібліотеки
+// - Метод addToFavourite - це метод що приймає аргументом назву книги і додає обєкт книги в список улюблених
+// - Метод removeFromFavourite - це метод що приймає назву книги і видаляє її з списку улюблених
+// - Гетер сountFavouriteBooks - це гетер що показує кількість книжок що додані в улюблені
+// - Гетер finishedBook - це гетер що містить колекцію всіх прочитаних книжок
+// - Метод totalCost - це метод що рахує вартість всіх книжок в бібліотеці
+
+class Library {
+    constructor() {  
+        this.books = [];
+        this.favourite = [];
+    }
+    toBuy(book) {
+        if (this.books.includes(book)) {
+            alert('This book exsists')
+        }
+        this.books.push(book);
+    }
+    toSell(bookName) {
+        this.books.forEach(({name}, idx) => {
+            if (name === bookName) {
+              this.books.splice(idx,1)
+            }
+        })
+        return this.books
+    }
+    addToFavorit(bookName) {
+        let favoritBook = this.books.find(({ name }) => name === bookName)
+        this.favourite.push(favoritBook)
+        return this.favourite
+    }
+    removeFromFavorite(bookName) {
+        this.favourite.forEach(({ name }, idx) => {
+            if (name === bookName) {
+                this.favourite.splice(idx, 1)
+            }
+        })
+        return this.favourite
+    }
+
+    get countFavoriteBooks() {
+        return this.favourite.length
+        
+    }
+
+    get finishedBook() {
+        
+    }
+    getTotalCost() {
+        
+    }
+}
+
+const myLibrary = new Library();
+console.log(myLibrary);
+myLibrary.toBuy({ name: 'core JS', year: 2020 });
+myLibrary.toSell('core JS');
+myLibrary.toBuy({ name: 'React JS', year: 2020 });
+myLibrary.toBuy({ name: 'Node JS', year: 2020 });
+
+
+
+myLibrary.addToFavorit('React JS');
+myLibrary.addToFavorit('Node JS');
+
+myLibrary.removeFromFavorite('Node JS');
