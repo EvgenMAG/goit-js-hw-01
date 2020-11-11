@@ -1059,62 +1059,79 @@
 // - Гетер finishedBook - це гетер що містить колекцію всіх прочитаних книжок
 // - Метод totalCost - це метод що рахує вартість всіх книжок в бібліотеці
 
-class Library {
-    constructor() {  
-        this.books = [];
-        this.favourite = [];
-    }
-    toBuy(book) {
-        if (this.books.includes(book)) {
-            alert('This book exsists')
-        }
-        this.books.push(book);
-    }
-    toSell(bookName) {
-        this.books.forEach(({name}, idx) => {
-            if (name === bookName) {
-              this.books.splice(idx,1)
-            }
-        })
-        return this.books
-    }
-    addToFavorit(bookName) {
-        let favoritBook = this.books.find(({ name }) => name === bookName)
-        this.favourite.push(favoritBook)
-        return this.favourite
-    }
-    removeFromFavorite(bookName) {
-        this.favourite.forEach(({ name }, idx) => {
-            if (name === bookName) {
-                this.favourite.splice(idx, 1)
-            }
-        })
-        return this.favourite
-    }
+// class Library {
+//     constructor() {  
+//         this.books = [];
+//         this.favourite = [];
+//     }
+//     toBuy(book) {
+//         if (this.books.includes(book)) {
+//             alert('This book exsists')
+//         }
+//         this.books.push(book);
+//     }
+//     toSell(bookName) {
+//         this.books.forEach(({name}, idx) => {
+//             if (name === bookName) {
+//               this.books.splice(idx,1)
+//             }
+//         })
+//         return this.books
+//     }
+//     addToFavorit(bookName) {
+//         let favoritBook = this.books.find(({ name }) => name === bookName)
+//         this.favourite.push(favoritBook)
+//         return this.favourite
+//     }
+//     removeFromFavorite(bookName) {
+//         this.favourite.forEach(({ name }, idx) => {
+//             if (name === bookName) {
+//                 this.favourite.splice(idx, 1)
+//             }
+//         })
+//         return this.favourite
+//     }
 
-    get countFavoriteBooks() {
-        return this.favourite.length
+//     get countFavoriteBooks() {
+//         return this.favourite.length
         
-    }
+//     }
 
-    get finishedBook() {
+//     get finishedBook() {
         
-    }
-    getTotalCost() {
+//     }
+//     getTotalCost() {
         
-    }
-}
+//     }
+// }
 
-const myLibrary = new Library();
-console.log(myLibrary);
-myLibrary.toBuy({ name: 'core JS', year: 2020 });
-myLibrary.toSell('core JS');
-myLibrary.toBuy({ name: 'React JS', year: 2020 });
-myLibrary.toBuy({ name: 'Node JS', year: 2020 });
+// const myLibrary = new Library();
+// console.log(myLibrary);
+// myLibrary.toBuy({ name: 'core JS', year: 2020 });
+// myLibrary.toSell('core JS');
+// myLibrary.toBuy({ name: 'React JS', year: 2020 });
+// myLibrary.toBuy({ name: 'Node JS', year: 2020 });
 
 
 
-myLibrary.addToFavorit('React JS');
-myLibrary.addToFavorit('Node JS');
+// myLibrary.addToFavorit('React JS');
+// myLibrary.addToFavorit('Node JS');
 
-myLibrary.removeFromFavorite('Node JS');
+// myLibrary.removeFromFavorite('Node JS');
+
+
+//   //coding here..
+//   function firstToLast(str,c){
+//     var first = str.indexOf(c)
+//       console.log(first);
+//     var last = str.lastIndexOf(c);
+//     console.log(last);
+//   return first == -1 ? -1 : last - first;
+// }
+  
+  
+
+// // console.dir(firstToLast("ababc","a"));
+// console.dir(firstToLast("ababc","c"));
+// console.dir(firstToLast("ababc","d"));
+
